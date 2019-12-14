@@ -10,8 +10,8 @@ app.get('[project_url]/api/timestamp/:date_string?', (req, res) => {
   if (req.query.date_string.length == 0){
       //Empty string 
       let newDate = new Date()
-      let unixDate = newDate.valueOf()
-      let utcDate = newDate.toUTCString()
+      let unixDate = Math.round((new Date()).getTime() / 1000);           
+      let utcDate =  new Date().toUTCString() ;       
       res.json({"unix": unixDate, "utc": utcDate}) 
   }
   let dateString = new Date(req.query.date_string)
