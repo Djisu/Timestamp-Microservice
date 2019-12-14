@@ -30,7 +30,7 @@ app.get("/api/timestamp/", (req, res) => {
 });
 
 
-app.get("[project_url]/api/timestamp/:date_string?", (req, res) => {
+app.get("/api/timestamp/:date_string?", (req, res) => {
   //Check for length of date string
   let dateString  = req.params.date_string
   if (/\d{5,}/.test(dateString)){
