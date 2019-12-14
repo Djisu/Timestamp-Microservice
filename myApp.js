@@ -7,7 +7,7 @@ app.get('/api/timestamp/', (req, res) => {
 
 app.get('[project_url]/api/timestamp/:date_string?', (req, res) => {
   //Check for length of date string
-  if (req.query.date_string.length == 0){
+  if (!req.query.date_string){
       //Empty string 
       let newDate = new Date()
       let unixDate = Math.round((new Date()).getTime() / 1000);           
@@ -21,7 +21,7 @@ app.get('[project_url]/api/timestamp/:date_string?', (req, res) => {
            res.json({"error" : "Invalid Date" })
         } else { 
             //down.innerHTML = "Valid Date."; 
-            let unixDate = Math.round((dateString.getTime() / 1000); 
+            let unixDate = Math.round((dateString.getTime() / 1000))
             let utcDate = dateString.toUTCString()
             res.json({"unix": unixDate, "utc": utcDate})         
         } 
