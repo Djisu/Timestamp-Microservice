@@ -7,7 +7,7 @@ app.get('/api/timestamp/', (req, res) => {
 
 app.get('[project_url]/api/timestamp/:date_string?', (req, res) => {
   //Check for length of date string
-  if (req.query.date_string.lenght == 0){
+  if (req.query.date_string.length == 0){
       //Empty string 
       let newDate = new Date()
       let unixDate = newDate.valueOf()
