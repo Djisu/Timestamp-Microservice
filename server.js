@@ -33,7 +33,7 @@ app.get("/api/timestamp/", (req, res) => {
 app.get("/api/timestamp/:date_string?", (req, res) => {
   //Check for length of date string
   let dateString  = req.params.date_string
-  if (/\d{5,}/.test(dateString)){
+  if(!isNaN(dateString.getTime())){
       //Empty string 
       let newDate = new Date()
       //let unixDate = newDate.getTime() * 1           
