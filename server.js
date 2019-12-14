@@ -38,7 +38,7 @@ app.get("[project_url]/api/timestamp/:date_string?", (req, res) => {
       let newDate = new Date()
       //let unixDate = newDate.getTime() * 1           
       //let utcDate =  newDate.toUTCString() ;       
-      res.json({ unix: newDate.getTime(), utc: newDate.toUTCString()} ) 
+      res.json({ unix: Date.getTime(), utc: Date.toUTCString()} ) 
   }
   
   if (new Date(dateString)){ 
