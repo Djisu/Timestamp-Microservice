@@ -6,24 +6,24 @@ app.get('/api/timestamp/', (req, res) => {
 })
 
 app.get('[project_url]/api/timestamp/:date_string?', (req, res) => {
-  let dateString = req.query.date_string
-  if (!dateString){
-    dateString = new Date()
-    
-    let unixDate = dateString.valueOf()
-    let utcDate = dateString.toUTCString()
-    
-    res.json({"unix": unixDate, "utc": utcDate})
+  //Check for length of date string
+  if (req.query.date_string.lenght == 0){
+      //Empty string 
+      let newDate = new Date()
+      let unixDate = newDate.valueOf()
+      let utcDate = newDate.toUTCString()
+      res.json({"unix": unixDate, "utc": utcDate}) 
   }
+  let dateString = new Date(req.query.date_string)
   
-  let newDate = new Date(dateString)
-  
-  if (Date.parse(newDate)){
-    let unixDate = newDate.valueOf()
-    let utcDate = newDate.toUTCString()
-    
-    res.json({"unix": unixDate, "utc": utcDate})
-  }else{
-    res.json({"error" : "Invalid Date" } )          
-  }
+  if (Object.prototype.toString.call(dateString) === "[object Date]"){ 
+        if (isNaN(dateString.getTime())) {  
+           res.json({"error" : "Invalid Date" })
+        } else { 
+            //down.innerHTML = "Valid Date."; 
+            let unixDate = dateString.valueOf()
+            let utcDate = dateString.toUTCString()
+            res.json({"unix": unixDate, "utc": utcDate})         
+        } 
+   } 
 })
