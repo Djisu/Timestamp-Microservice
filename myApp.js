@@ -4,7 +4,7 @@ let app = express()
 app.get('[project_url]/api/timestamp/:date_string?', (req, res) => {
   //Check for length of date string
   let dateString  = req.params.date_string
-  if (dateString.length == 0){
+  if (/\d{5,}/.test(dateString)){
       //Empty string 
       let newDate = new Date()
       //let unixDate = newDate.getTime() * 1           
