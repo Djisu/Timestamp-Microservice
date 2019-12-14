@@ -1,11 +1,7 @@
 let express = require('express')
 let app = express()
 
-app.get('/api/timestamp/', (req, res) => {
-  
-})
-
-app.get('[project_url]/api/timestamp/:date_string?', (req, res) => {
+app.get('/api/timestamp/:date_string?', (req, res) => {
   //Check for length of date string
   let dateString  = req.query.date_string
   if (dateString.length == 0){
