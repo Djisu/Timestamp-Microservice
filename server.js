@@ -33,12 +33,10 @@ app.get("/api/timestamp/", (req, res) => {
 app.get("/api/timestamp/:date_string?", (req, res) => {
   //Check for length of date string
   let dateString  = req.params.date_string
-  if(!isNaN(dateString.getTime())){
-      //Empty string 
-      let newDate = new Date()
-      //let unixDate = newDate.getTime() * 1           
-      //let utcDate =  newDate.toUTCString() ;       
-      res.json({ "unix": dateString.getTime(), "utc": dateString.toUTCString()} ) 
+  if (/\d{5,}/.test(dateString)) {
+    dateInt = parseInt(dateString);
+    //Date regards numbers as unix timestamps, strings are processed differently
+    res.json({ unix: dateString, utc: new Date(dateInt).toUTCString() });
   }
   
   if (new Date(dateString)){ 
