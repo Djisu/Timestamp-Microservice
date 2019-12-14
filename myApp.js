@@ -3,7 +3,7 @@ let app = express()
 
 app.get('[project_url]/api/timestamp/:date_string?', (req, res) => {
   //Check for length of date string
-  let dateString  = req.query.date_string
+  let dateString  = req.params.date_string
   if (dateString.length == 0){
       //Empty string 
       let newDate = new Date()
