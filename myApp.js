@@ -14,15 +14,15 @@ app.get('[project_url]/api/timestamp/:date_string?', (req, res) => {
       let utcDate =  new Date().toUTCString() ;       
       res.json({"unix": unixDate, "utc": utcDate}) 
   }
-  let dateString = new Date(req.query.date_string)
+  //let dateString = new Date(req.query.date_string)
   
-  if (Object.prototype.toString.call(dateString) === "[object Date]"){ 
-        if (isNaN(dateString.getTime())) {  
+  if (new Date(req.query.date_string)){ 
+        if (isNaN(req.query.date_string.getTime())) {  
            res.json({"error" : "Invalid Date" })
         } else { 
             //down.innerHTML = "Valid Date."; 
-            let unixDate = Math.round((dateString.getTime() / 1000))
-            let utcDate = dateString.toUTCString()
+            let unixDate = Math.round((req.query.date_string.getTime() / 1000))
+            let utcDate = req.query.date_string.toUTCString()
             res.json({"unix": unixDate, "utc": utcDate})         
         } 
    } 
